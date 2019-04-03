@@ -1,0 +1,11 @@
+FROM microsoft/dotnet:3.0-sdk
+
+RUN apt-get update \
+ && apt-get install -y \
+        cmake \
+        ninja-build \
+        clang-3.9 \
+        llvm-3.9 \
+        lldb-3.9 \
+        libicu-dev \
+        liblttng-ust-dev
