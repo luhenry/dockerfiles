@@ -50,6 +50,11 @@ RUN mkdir -p /usr/lib/jvm/maven-3.8.1 \
  && rm apache-maven-3.8.1-bin.tar.gz
 ENV PATH="/usr/lib/jvm/maven-3.8.1/bin:${PATH}"
 
+RUN apt install -y \
+        libnvblas10
+
+ENV LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu${LD_LIBRARY_PATH:+":${LD_LIBRARY_PATH}"}"
+
 RUN wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
  && apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
  && rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
