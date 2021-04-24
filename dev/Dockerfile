@@ -9,6 +9,7 @@ RUN apt-get -y install \
         linux-headers-`uname -r` \
         linux-tools-`uname -r` \
         make \
+        rubygems \
         unzip \
         zip
 
@@ -20,3 +21,5 @@ RUN apt-get -y install \
 #  && apt-get -y install \
 #         intel-oneapi-vtune
 # ENV PATH="/opt/intel/oneapi/vtune/latest/bin64:${PATH}"
+
+RUN gem install gist
