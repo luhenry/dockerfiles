@@ -52,8 +52,15 @@ RUN mkdir -p /usr/lib/jvm/maven-3.8.1 \
  && rm apache-maven-3.8.1-bin.tar.gz
 ENV PATH="/usr/lib/jvm/maven-3.8.1/bin:${PATH}"
 
-RUN apt-get install -y \
-        libopenblas-dev
+RUN wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
+ && apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
+ && rm GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
+ && echo "deb https://apt.repos.intel.com/oneapi all main" > /etc/apt/sources.list.d/oneAPI.list \
+ && apt -y update \
+ && apt -y install \
+        intel-oneapi-mkl
+
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+"${LD_LIBRARY_PATH}:"}/opt/intel/oneapi/mkl/latest/lib/intel64:/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin"
 
 # since the config and run script for actions are not allowed to be run by root,
 # set the user to "gh" so all subsequent commands are run as the gh user
