@@ -18,20 +18,19 @@ RUN apt-get -y install \
 
 # JDK 8
 RUN mkdir -p /usr/lib/jvm/jdk8 \
- && wget --progress=dot:giga -c https://static.azul.com/zulu/bin/zulu8.52.0.23-ca-jdk8.0.282-linux_x64.zip \
- && unzip zulu8.52.0.23-ca-jdk8.0.282-linux_x64.zip \
- && cp -r zulu8.52.0.23-ca-jdk8.0.282-linux_x64/* /usr/lib/jvm/jdk8/ \
- && rm -rf zulu8.52.0.23-ca-jdk8.0.282-linux_x64 zulu8.52.0.23-ca-jdk8.0.282-linux_x64.zip
+ && wget --progress=dot:giga -c https://cdn.azul.com/zulu/bin/zulu8.54.0.21-ca-jdk8.0.292-linux_x64.tar.gz \
+ && tar -xvzf zulu8.54.0.21-ca-jdk8.0.292-linux_x64.tar.gz --strip-components 1 -C /usr/lib/jvm/jdk8 \
+ && rm -rf zulu8.54.0.21-ca-jdk8.0.292-linux_x64.tar.gz
 
 # JDK 11
 RUN mkdir -p /usr/lib/jvm/jdk11 \
- && wget --progress=dot:giga -c https://static.azul.com/zulu/bin/zulu11.45.27-ca-jdk11.0.10-linux_x64.tar.gz \
- && tar -xvzf zulu11.45.27-ca-jdk11.0.10-linux_x64.tar.gz --strip-components 1 -C /usr/lib/jvm/jdk11 \
- && rm zulu11.45.27-ca-jdk11.0.10-linux_x64.tar.gz
+ && wget --progress=dot:giga -c https://cdn.azul.com/zulu/bin/zulu11.48.21-ca-jdk11.0.11-linux_x64.tar.gz \
+ && tar -xvzf zulu11.48.21-ca-jdk11.0.11-linux_x64.tar.gz --strip-components 1 -C /usr/lib/jvm/jdk11 \
+ && rm zulu11.48.21-ca-jdk11.0.11-linux_x64.tar.gz
 
 # JDK 16
 RUN mkdir -p /usr/lib/jvm/jdk16 \
- && wget --progress=dot:giga -c https://static.azul.com/zulu/bin/zulu16.28.11-ca-jdk16.0.0-linux_x64.tar.gz \
+ && wget --progress=dot:giga -c https://cdn.azul.com/zulu/bin/zulu16.28.11-ca-jdk16.0.0-linux_x64.tar.gz \
  && tar -xvzf zulu16.28.11-ca-jdk16.0.0-linux_x64.tar.gz --strip-components 1 -C /usr/lib/jvm/jdk16 \
  && rm zulu16.28.11-ca-jdk16.0.0-linux_x64.tar.gz
 ENV JAVA_HOME="/usr/lib/jvm/jdk16"
@@ -39,9 +38,9 @@ ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 # JDK 17
 RUN mkdir -p /usr/lib/jvm/jdk17 \
- && wget --progress=dot:giga -c https://static.azul.com/zulu/bin/zulu17.0.43-ea-jdk17.0.0-ea.17-linux_x64.tar.gz \
- && tar -xvzf zulu17.0.43-ea-jdk17.0.0-ea.17-linux_x64.tar.gz     --strip-components 1 -C /usr/lib/jvm/jdk17 \
- && rm zulu17.0.43-ea-jdk17.0.0-ea.17-linux_x64.tar.gz    
+ && wget --progress=dot:giga -c https://cdn.azul.com/zulu/bin/zulu17.0.45-ea-jdk17.0.0-ea.18-linux_x64.tar.gz \
+ && tar -xvzf zulu17.0.45-ea-jdk17.0.0-ea.18-linux_x64.tar.gz --strip-components 1 -C /usr/lib/jvm/jdk17 \
+ && rm zulu17.0.45-ea-jdk17.0.0-ea.18-linux_x64.tar.gz
 
 RUN mkdir -p /opt/maven-3.8.1 \
  && wget --progress=dot:giga -c https://downloads.apache.org/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz \
