@@ -1,5 +1,5 @@
 FROM base:latest
 
-RUN apt-get -y install \
+RUN apt -y install \
         docker.io \
         make

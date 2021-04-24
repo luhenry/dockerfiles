@@ -1,6 +1,6 @@
 FROM jdk:latest
 
-RUN apt-get -y install \
+RUN apt -y install \
         libgcc-8-dev \
         libstdc++-8-dev \
         python3 \

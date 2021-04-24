@@ -11,10 +11,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
 #  --build-arg CACHEBUST=$(date +'%Y-%m-%d')
 ARG CACHEBUST=1
 
-RUN apt-get -y update \
- && apt-get -y upgrade
+RUN apt -y update \
+ && apt -y upgrade
 
-RUN apt-get -y install \
+RUN apt -y install \
         apt-utils \
         git \
         htop \

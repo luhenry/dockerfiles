@@ -10,12 +10,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
  && echo $TZ > /etc/timezone
 
 # update the base packages
-RUN apt-get update -y \
- && apt-get upgrade -y
+RUN apt update -y \
+ && apt upgrade -y
 
 # install python and the packages the your code depends on along with jq so we can parse JSON
 # add additional packages as necessary
-RUN apt-get install -y \
+RUN apt install -y \
         build-essential \
         curl \
         jq \

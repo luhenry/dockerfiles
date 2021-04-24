@@ -1,6 +1,6 @@
 FROM base:latest
 
-RUN apt-get -y install \
+RUN apt -y install \
         build-essential \
         ruby-full \
         zlib1g-dev
