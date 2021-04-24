@@ -9,8 +9,6 @@ ENV TZ=Europe/Paris
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
  && echo $TZ > /etc/timezone
 
-ENV LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu"
-
 # update the base packages
 RUN apt-get update -y \
  && apt-get upgrade -y
@@ -60,7 +58,7 @@ RUN wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCT
  && apt -y install \
         intel-oneapi-mkl
 
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+"${LD_LIBRARY_PATH}:"}/opt/intel/oneapi/mkl/latest/lib/intel64:/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin"
+ENV LD_LIBRARY_PATH="/opt/intel/oneapi/mkl/latest/lib/intel64:/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin${LD_LIBRARY_PATH:+":${LD_LIBRARY_PATH}"}"
 
 # since the config and run script for actions are not allowed to be run by root,
 # set the user to "gh" so all subsequent commands are run as the gh user

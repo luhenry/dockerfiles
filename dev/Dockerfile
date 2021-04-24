@@ -1,6 +1,6 @@
 FROM base:latest
 
-ENV LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu"
+ENV LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu${LD_LIBRARY_PATH:+":${LD_LIBRARY_PATH}"}"
 
 RUN apt-get -y install \
         build-essential \
