@@ -9,6 +9,7 @@ RUN apt-get -y install \
         linux-headers-`uname -r` \
         linux-tools-`uname -r` \
         make \
+        python \
         rubygems \
         unzip \
         zip
