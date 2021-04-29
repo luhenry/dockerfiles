@@ -44,11 +44,11 @@ RUN chmod +x actions-runner-start.sh
 RUN chown -R gh:gh /home/gh
 
 # install some additional dependencies
-RUN mkdir -p /usr/lib/jvm/maven-3.8.1 \
+RUN mkdir -p /opt/maven3.8 \
  && wget --progress=dot:giga -c https://downloads.apache.org/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz \
- && tar -xvzf apache-maven-3.8.1-bin.tar.gz --strip-components 1 -C /usr/lib/jvm/maven-3.8.1 \
+ && tar -xvzf apache-maven-3.8.1-bin.tar.gz --strip-components 1 -C /opt/maven3.8 \
  && rm apache-maven-3.8.1-bin.tar.gz
-ENV PATH="/usr/lib/jvm/maven-3.8.1/bin:${PATH}"
+ENV PATH="/opt/maven3.8/bin:${PATH}"
 
 RUN apt-get -y install \
         libnvblas10
