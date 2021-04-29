@@ -65,10 +65,12 @@ $(eval $(call DevTemplate,dev,base))
   $(eval $(call DevTemplate,jdk,dev))
     $(eval $(call DevTemplate,jmh,jdk))
     $(eval $(call DevTemplate,netlib,jdk))
+    $(eval $(call DevTemplate,netlib-java,jdk))
     $(eval $(call DevTemplate,raytracer,jdk))
     $(eval $(call DevTemplate,spark,jdk))
     $(eval $(call DevTemplate,upmem,jdk))
 $(eval $(call DevTemplate,luhenry.github.io,base))
+$(eval $(call DevTemplate,netlib-website,base))
 # Must be last as it restarts itself when running `make run-devenv`
 $(eval $(call DevTemplate,dockerfiles,base))
 
