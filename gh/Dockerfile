@@ -10,12 +10,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
  && echo $TZ > /etc/timezone
 
 # update the base packages
-RUN apt update -y \
- && apt upgrade -y
+RUN apt-get -y update \
+ && apt-get -y upgrade
 
 # install python and the packages the your code depends on along with jq so we can parse JSON
 # add additional packages as necessary
-RUN apt install -y \
+RUN apt-get -y install \
         build-essential \
         curl \
         jq \
@@ -50,7 +50,7 @@ RUN mkdir -p /usr/lib/jvm/maven-3.8.1 \
  && rm apache-maven-3.8.1-bin.tar.gz
 ENV PATH="/usr/lib/jvm/maven-3.8.1/bin:${PATH}"
 
-RUN apt install -y \
+RUN apt-get -y install \
         libnvblas10
 
 ENV LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu${LD_LIBRARY_PATH:+":${LD_LIBRARY_PATH}"}"

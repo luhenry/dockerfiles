@@ -1,6 +1,6 @@
 FROM jdk:latest
 
-RUN apt -y install \
+RUN apt-get -y install \
         intel-oneapi-mkl \
         libnvblas10
 

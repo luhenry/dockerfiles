@@ -1,6 +1,6 @@
 FROM dev:latest
 
-RUN apt -y install \
+RUN apt-get -y install \
         autoconf \
         libasound2-dev \
         libcups2-dev \
