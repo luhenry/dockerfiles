@@ -63,8 +63,8 @@ endef
 
 $(eval $(call DevTemplate,dev,base))
   $(eval $(call DevTemplate,jdk,dev))
-    $(eval $(call DevTemplate,blas,jdk))
     $(eval $(call DevTemplate,jmh,jdk))
+    $(eval $(call DevTemplate,netlib,jdk))
     $(eval $(call DevTemplate,raytracer,jdk))
     $(eval $(call DevTemplate,spark,jdk))
     $(eval $(call DevTemplate,upmem,jdk))
