@@ -111,17 +111,19 @@ run-$(1): build-$(1)
 	test -n "$$(PROJECT)" || (echo "PROJECT is not defined" && false)
 	test -n "$$(ACCESS_TOKEN)" || (echo "ACCESS_TOKEN is not defined" && false)
 	test -n "$$(CPUSET)" || (echo "CPUSET is not defined" && false)
-	docker kill --signal INT $(1)-$$(ORGANIZATION)-$$(PROJECT)-$$(CPUSET) && docker wait $(1)-$$(ORGANIZATION)-$$(PROJECT)-$$(CPUSET) || true
-	docker rm --force $(1)-$$(ORGANIZATION)-$$(PROJECT)-$$(CPUSET) || true
+	test -n "$$(ID)" || (echo "ID is not defined" && false)
+	docker kill --signal INT $(1)-$$(ORGANIZATION)-$$(PROJECT)-$$(ID) && docker wait $(1)-$$(ORGANIZATION)-$$(PROJECT)-$$(ID) || true
+	docker rm --force $(1)-$$(ORGANIZATION)-$$(PROJECT)-$$(ID) || true
 	docker run \
 		--detach \
 		--network host \
 		--user gh \
-		--cpuset-cpus $$(CPUSET) \
-		--env ORGANIZATION=$$(ORGANIZATION) \
-		--env PROJECT=$$(PROJECT) \
-		--env ACCESS_TOKEN=$$(ACCESS_TOKEN) \
-		--name $(1)-$$(ORGANIZATION)-$$(PROJECT)-$$(CPUSET) \
+		--cpuset-cpus "$$(CPUSET)" \
+		--env "ORGANIZATION=$$(ORGANIZATION)" \
+		--env "PROJECT=$$(PROJECT)" \
+		--env "ACCESS_TOKEN=$$(ACCESS_TOKEN)" \
+		--hostname "$$(HOSTNAME)-$$(ORGANIZATION)-$$(PROJECT)-$$(ID)" \
+		--name $(1)-$$(ORGANIZATION)-$$(PROJECT)-$$(ID) \
 		$(1):latest
 
 gh: run-$(1)
