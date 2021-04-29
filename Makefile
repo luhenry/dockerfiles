@@ -37,7 +37,7 @@ run-$(1): build-$(1)
 			--tty \
 			--privileged \
 			--network host \
-			--volume /home/$$(USER)/.cache/coursier:/home/$$(USER)/.cache/coursier \
+			--volume /home/$$(USER)/.cache:/home/$$(USER)/.cache \
 			--volume /home/$$(USER)/.gist:/home/$$(USER)/.gist \
 			--volume /home/$$(USER)/.ivy2:/home/$$(USER)/.ivy2 \
 			--volume /home/$$(USER)/.m2:/home/$$(USER)/.m2 \
