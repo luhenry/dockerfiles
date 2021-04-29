@@ -2,7 +2,7 @@
 FROM ubuntu:latest
 
 # set the github runner version
-ARG RUNNER_VERSION="2.277.1"
+ARG RUNNER_VERSION="2.278.0"
 
 # Fix installation of tzdata
 ENV TZ=Europe/Paris
