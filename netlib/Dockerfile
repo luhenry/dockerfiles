@@ -4,6 +4,7 @@ RUN apt-get -y install \
         gcc-aarch64-linux-gnu \
         gcc-x86-64-linux-gnu \
         intel-oneapi-mkl \
+        libarpack2-dev \
         libnvblas10 \
         libopenblas-dev
 
