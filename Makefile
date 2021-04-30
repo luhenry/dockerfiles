@@ -13,7 +13,8 @@ define BuildTemplate
 
 .PHONY: build-$(1)
 build-$(1): $(1)/Dockerfile $$(if $(2),build-$(2)) pull-ubuntu
-	docker build --build-arg CACHEBUST="$$(shell date +'%Y-%m-%d')" -f $$< -t $(1) $(1)
+	docker build $(if $(filter $(1),dockerfiles),--build-arg DOCKERGID=$(shell grep -E '^docker\:' /etc/group | cut -d ':' -f3)) \
+		--build-arg CACHEBUST="$$(shell date +'%Y-%W')" -f $$< -t $(1) $(1)
 
 endef
 
@@ -49,6 +50,7 @@ run-$(1): build-$(1)
 			--volume /home/$$(USER)/git:/home/$$(USER)/git \
 			--volume /var/run/docker.sock:/var/run/docker.sock \
 			--user $$(USER) \
+			$(if $(filter $(1),dockerfiles),--group-add docker) \
 			--workdir /home/$$(USER)/git/$(1) \
 			--name $(1) \
 			$(1):latest "
