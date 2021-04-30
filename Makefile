@@ -79,6 +79,38 @@ $(eval $(call DevTemplate,dockerfiles,base))
 ##
 # Parameters:
 #  $(1): name
+define ServiceTemplate
+
+.PHONY: build-$(1)
+build-$(1):
+	docker pull $(1):latest
+
+.PHONY: run-$(1)
+run-$(1): build-$(1)
+	docker run --detach --volume /var/run/docker.sock:/var/run/docker.sock dockerfiles:latest bash -c " \
+		docker rm --force $(1) || true; \
+		docker run \
+			--detach \
+			--interactive \
+			--rm \
+			--tty \
+			--network host \
+			--name $(1) \
+			$(1):latest "
+
+.PHONY: build-devenv
+build-devenv: build-$(1)
+
+.PHONY: run-devenv
+run-devenv: run-$(1)
+
+endef
+
+$(eval $(call ServiceTemplate,redis))
+
+##
+# Parameters:
+#  $(1): name
 #  $(2): depends_on
 define VMTemplate
 
